@@ -1,0 +1,33 @@
+{
+	"geode": "4.4.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "capeling.swing_arrow",
+	"name": "swing_arrow",
+	"version": "v1.0.0",
+	"developer": "capeling",
+	"description": "",
+	"settings": {
+		"enabled": {
+			"name": "Enabled",
+			"type": "bool",
+			"default": true
+		},
+		"opacity": {
+			"name": "Opacity",
+			"type": "float",
+			"default": 255,
+			"max": 255,
+			"min": 1,
+			"control": {
+				"slider": true,
+				"slider-step": 1
+			},
+			"enable-if": "enabled"
+		}
+	}
+}
