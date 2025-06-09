@@ -1,3 +1,3 @@
-# Template Mod
+# Swing Arrow
 
-Edit about.md to change this
+Adds an arrow when you are in the swing gamemode that tells you what gravity you are

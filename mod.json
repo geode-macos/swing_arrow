@@ -1,5 +1,5 @@
 {
-	"geode": "4.4.0",
+	"geode": "4.5.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -7,10 +7,10 @@
 		"ios": "2.2074"
 	},
 	"id": "capeling.swing_arrow",
-	"name": "swing_arrow",
+	"name": "Swing Arrow",
 	"version": "v1.0.0",
 	"developer": "capeling",
-	"description": "",
+	"description": "Arrow that tells you what gravity you are!",
 	"settings": {
 		"enabled": {
 			"name": "Enabled",
