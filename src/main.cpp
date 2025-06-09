@@ -34,6 +34,18 @@ struct ArrowPlayerObject : geode::Modify<ArrowPlayerObject, PlayerObject> {
 
 		fields->m_arrow->setVisible(m_isSwing && fields->m_enabled);
 	}
+	
+	void resetPlayerIcon() {
+		PlayerObject::resetPlayerIcon();
+
+		m_fields->m_arrow->setScale(.65f);
+	}
+	
+	void playDeathEffect() {
+		PlayerObject::playDeathEffect();
+
+		m_fields->m_arrow->runAction(cocos2d::CCEaseInOut::create(cocos2d::CCScaleTo::create(.15f,0), 2));
+	}
 
 	void rotateGameplay(int p0, int p1, bool p2, float p3, float p4, bool p5, bool p6) {
 		PlayerObject::rotateGameplay(p0, p1, p2, p3, p4, p5, p6);
