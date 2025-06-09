@@ -10,6 +10,10 @@
 	"name": "Swing Arrow",
 	"version": "v1.0.0",
 	"developer": "capeling",
+	"links": {
+		"source": "https://github.com/Capeling/swing_arrow",
+		"homepage": "https://twitter.com/capelingg"
+	},
 	"description": "Arrow that tells you what gravity you are!",
 	"settings": {
 		"enabled": {
