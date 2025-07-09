@@ -1,9 +1,12 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 
+#include "modmanager.h"
+
+constexpr int GLOBED_PLAYER_OBJECT_TAG = 3458738;
+
 struct ArrowPlayerObject : geode::Modify<ArrowPlayerObject, PlayerObject> {
 	struct Fields {
-		bool m_enabled = true;
 		geode::Ref<cocos2d::CCSprite> m_arrow = nullptr;
 	};
 
@@ -11,18 +14,19 @@ struct ArrowPlayerObject : geode::Modify<ArrowPlayerObject, PlayerObject> {
 		if (!PlayerObject::init(p0, p1, p2, p3, p4))
 			return false;
 
-		auto mod = geode::Mod::get();
+		auto mm = ModManager::get();
 
 		auto arrow = cocos2d::CCSprite::createWithSpriteFrameName("particle_12_001.png");
 		arrow->setVisible(false);
 		arrow->setRotation(90);
-		arrow->setOpacity(mod->getSettingValue<float>("opacity"));
+		arrow->setOpacity(mm.getOpacity());
 		arrow->setZOrder(2);
-		arrow->setScale(.65f);
-		m_mainLayer->addChildAtPosition(arrow, geode::Anchor::Center, ccp(-7, 0), false);
-		
-		m_fields->m_arrow = arrow;
-		m_fields->m_enabled = mod->getSettingValue<bool>("enabled");
+		arrow->setScale(mm.getScale());
+		m_mainLayer->addChildAtPosition(arrow, geode::Anchor::Center, ccp(mm.getOffsetX(), mm.getOffsetY()), false);
+
+		auto fields = m_fields.self();
+
+		fields->m_arrow = arrow;
 
 		return true;
 	}
@@ -32,13 +36,13 @@ struct ArrowPlayerObject : geode::Modify<ArrowPlayerObject, PlayerObject> {
 
 		auto fields = m_fields.self();
 
-		fields->m_arrow->setVisible(m_isSwing && fields->m_enabled);
+		fields->m_arrow->setVisible(m_isSwing && ModManager::get().getEnabled() && GJBaseGameLayer::get() && this->getTag() != GLOBED_PLAYER_OBJECT_TAG);
 	}
 	
 	void resetPlayerIcon() {
 		PlayerObject::resetPlayerIcon();
 
-		m_fields->m_arrow->setScale(.65f);
+		m_fields->m_arrow->setScale(ModManager::get().getScale());
 	}
 	
 	void playDeathEffect() {
