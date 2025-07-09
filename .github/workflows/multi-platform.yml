@@ -39,8 +39,8 @@ jobs:
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          bindings: geode-sdk/bindings
-          bindings-ref: main
+          bindings: RayDeeUx/bindings
+          bindings-ref: "ios-0x227648,-m1-0x37f1a8,-imac-0x400c30"
           combine: true
           target: ${{ matrix.config.target }}
 
